@@ -1,0 +1,205 @@
+:root {
+  font-family: "BoxfontRoundRegular";
+  font-weight: 700;
+  /* font-style: normal;  */
+}
+[data-grid] {
+  display: grid;
+}
+
+[data-even-columns] {
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+}
+
+[data-flex] {
+  display: flex;
+}
+
+[data-justify-content="center"] {
+  justify-content: center;
+}
+
+[data-justify-items="center"] {
+  justify-content: center;
+}
+
+[data-align-content="center"] {
+  align-content: center;
+}
+
+[data-align-items="center"] {
+  align-items: center;
+}
+
+[data-relative] {
+  position: relative;
+}
+
+[data-absolute] {
+  position: absolute;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+}
+ul {
+  list-style: none;
+}
+form.add-book {
+  text-align: center;
+  /* align-items: center; */
+}
+form.add-book,
+.library {
+  /* grid-area: var(--row-area, 1) / var(--column-area, 1); */
+}
+form.add-book button {
+  /* padding: 10px; */
+  align-self: end;
+}
+form.add-book label {
+  display: contents;
+}
+form.add-book fieldset {
+  gap: min(14px, 1vh);
+}
+form.add-book .description::first-letter,
+.title {
+  font-family: "DancingScriptBold";
+}
+form.add-book .description::first-letter {
+  font-size: 1.3rem;
+  font-weight: 900;
+  /* vertical-align: ; */
+  text-transform: uppercase;
+  color: red;
+}
+form.add-book fieldset input {
+  padding: min(10px, 1vh);
+}
+#library {
+  /* --row-area: 1 / -1; */
+  position: absolute;
+  width: 100%;
+
+  height: 100%;
+  background-color: aqua;
+  grid-row: 1 / -1;
+  --width: 100%;
+  /* ************************************! changes here */
+  grid-template-columns: repeat(auto-fit, minmax(var(--width), 1fr));
+  /* grid-auto-rows: max(200px, 30vh); */
+  padding: 1rem 0.5rem;
+  gap: 2vh;
+  transition: 0.5s;
+}
+#library:not(:target) {
+  translate: -100%;
+}
+.book {
+  --min-width: min(100vw, 300px);
+  /* --height:  */
+  min-width: var(--min-width);
+  align-self: start;
+  grid-template-columns: 1fr 1fr;
+
+  grid-template-areas:
+    "cover title"
+    "cover author"
+    "cover genres"
+    "cover details"
+    "mark mark";
+  grid-template-rows: auto auto 5ch auto 1fr;
+  align-items: start;
+  padding: 1rem;
+  gap: 0.5rem;
+  background-color: cornflowerblue;
+  border: 1px solid black;
+  color: white;
+  text-align: center;
+}
+.book-cover {
+  grid-area: cover;
+  align-self: stretch;
+  aspect-ratio: 1;
+  box-shadow: 1px 1px 10px 2px black;
+}
+.title,
+.author {
+  /* grid-area: 1 / var(--column-start, 1) / 1 / var(--column-end, 1); */
+}
+.title {
+  grid-area: title;
+
+  font-size: 1.3rem;
+}
+.title::before {
+  content: open-quote;
+}
+.title::after {
+  content: close-quote;
+}
+.author {
+  grid-area: author;
+  /* grid-column: 2 / auto; */
+  /* grid-row: 1; */
+}
+.author::before {
+  content: "By ";
+}
+.genres {
+  margin: 0 auto;
+  max-height: 100%;
+  overflow: auto;
+  grid-template-columns: repeat(auto-fit, minmax(7ch, 1fr));
+  grid-area: genres;
+  gap: 0.5rem;
+  justify-self: end;
+  width: 85%;
+}
+.genre {
+  border: 1px solid black;
+  background: #444;
+}
+.book-details,
+.mark-as-read {
+  align-self: end;
+}
+.book-details {
+  grid-area: details;
+}
+ul.details-list {
+  text-align: center;
+}
+.mark-as-read {
+  transition: 0.5s;
+  /* justify-self: end; */
+  align-self: stretch;
+  grid-area: mark;
+}
+.mark-as-read:focus-within {
+  translate: 0 -100%;
+  max-height: 0;
+  opacity: 0;
+}
+@media (min-width: 400px) {
+  #library {
+    --width: 400px;
+  }
+  .book {
+    --min-width: 400px;
+    max-width: var(--width);
+    justify-self: center;
+  }
+}

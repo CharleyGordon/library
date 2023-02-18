@@ -5,8 +5,144 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      media="screen"
+      href="https://fontlibrary.org//face/dancing"
+      type="text/css"
+    />
     <script src="script.js" defer></script>
     <title>Library</title>
   </head>
-  <body></body>
+  <body>
+    <form class="add-book">
+      <fieldset class="book-essence" data-grid>
+        <legend>required information:</legend>
+        <label for="title"
+          ><span class="description">title:</span>
+          <input
+            type="text"
+            required="required"
+            name="title"
+            id="title"
+            autocomplete="title"
+          />
+        </label>
+        <label for="author"
+          ><span class="description">author:</span>
+          <input
+            type="text"
+            required="required"
+            name="author"
+            id="author"
+            autocomplete="author"
+            autocapitalize
+          />
+        </label>
+        <label for="genres"
+          ><span class="description">genres:</span>
+          <input
+            type="text"
+            required="required"
+            name="genres"
+            id="genres"
+            autocomplete="genres"
+          />
+        </label>
+      </fieldset>
+      <details>
+        <summary>Add more information</summary>
+        <fieldset data-grid>
+          <legend>additionals:</legend>
+          <label for="cycle">
+            <span class="description">cycle</span>
+            <input type="text" name="cycle" id="cycle" autocomplete="cycle" />
+          </label>
+          <label for="publisher">
+            <span class="description">publisher</span>
+            <input
+              type="text"
+              name="publisher"
+              id="publisher"
+              autocomplete="publisher"
+            />
+          </label>
+          <label for="pages">
+            <span class="description">pages</span>
+            <input type="text" name="pages" id="pages" autocomplete="pages" />
+          </label>
+          <label for="published">
+            <span class="description">published</span>
+            <input
+              type="text"
+              name="published"
+              id="published"
+              autocomplete="published"
+            />
+          </label>
+          <label for="read">
+            <span class="description">read</span>
+            <input type="text" name="read" id="read" autocomplete="read" />
+          </label>
+        </fieldset>
+      </details>
+      <button type="submit">Submit book</button>
+    </form>
+    <a href="#library" data-align-items="start">browse library</a>
+    <div id="library" data-grid>
+      <div class="book" data-grid data-relative>
+        <div class="book-cover"></div>
+        <span class="title"> The last empire </span>
+
+        <span class="author">Brandon Sanderson</span>
+        <ul class="genres" data-grid>
+          <li class="genre">Fantasy</li>
+          <li class="genre">Sci-Fi</li>
+          <li class="genre">just</li>
+          <li class="genre">trying</li>
+          <li class="genre">to</li>
+          <li class="genre">fill</li>
+          <li class="genre">the</li>
+          <li class="genre">space</li>
+        </ul>
+      </div>
+      <div class="book" data-grid data-relative>
+        <div class="book-cover"></div>
+        <span class="title"> The last empire </span>
+
+        <span class="author">Brandon Sanderson</span>
+        <ul class="genres" data-grid>
+          <li class="genre">Fantasy</li>
+          <li class="genre">Sci-Fi</li>
+          <li class="genre">just</li>
+          <li class="genre">trying</li>
+          <li class="genre">to</li>
+          <li class="genre">fill</li>
+          <li class="genre">the</li>
+          <li class="genre">space</li>
+        </ul>
+        <details class="book-details">
+          <summary>view details</summary>
+        </details>
+        <button type="button" class="mark-as-read">Mark as read</button>
+      </div>
+      <template class="book-template">
+        <div class="book" data-grid>
+          <div class="book-cover"></div>
+          <span class="title"> </span>
+          <span class="author"> </span>
+          <ul class="genres" data-grid></ul>
+          <details class="book-details">
+            <summary>view details</summary>
+            <ul class="details-list"></ul>
+          </details>
+
+          <form class="mark-as-read">
+            <input type="checkbox" name="" id="mark-as-read" />
+            <label for="mark-as-read">Mark as read</label>
+          </form>
+        </div>
+      </template>
+    </div>
+  </body>
 </html>
