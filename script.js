@@ -84,6 +84,9 @@ const listOptionals = function (key, optionals) {
   const detailsList = book.querySelector(".details-list");
   console.log(book, detailsList);
   for (let optional of Object.keys(optionals)) {
+    if (optional === "read" && optional[optional] === true) {
+      myLibrary[key].wasRead = true;
+    }
     const detail = document.createElement("li");
     const detailName = document.createElement("span");
     const detailValue = document.createElement("span");
