@@ -17,42 +17,6 @@
   <body>
     <div id="library" data-flex data-justify-content="center">
       <a href="#!">close</a>
-      <div class="book" data-grid data-relative>
-        <div class="book-cover"></div>
-        <span class="title"> The last empire </span>
-
-        <span class="author">Brandon Sanderson</span>
-        <ul class="genres" data-grid>
-          <li class="genre">Fantasy</li>
-          <li class="genre">Sci-Fi</li>
-          <li class="genre">just</li>
-          <li class="genre">trying</li>
-          <li class="genre">to</li>
-          <li class="genre">fill</li>
-          <li class="genre">the</li>
-          <li class="genre">space</li>
-        </ul>
-      </div>
-      <div class="book" data-grid data-relative>
-        <div class="book-cover"></div>
-        <span class="title"> The last empire </span>
-
-        <span class="author">Brandon Sanderson</span>
-        <ul class="genres" data-grid>
-          <li class="genre">Fantasy</li>
-          <li class="genre">Sci-Fi</li>
-          <li class="genre">just</li>
-          <li class="genre">trying</li>
-          <li class="genre">to</li>
-          <li class="genre">fill</li>
-          <li class="genre">the</li>
-          <li class="genre">space</li>
-        </ul>
-        <details class="book-details">
-          <summary>view details</summary>
-        </details>
-        <button type="button" class="mark-as-read">Mark as read</button>
-      </div>
       <template class="book-template">
         <div class="book" data-grid>
           <div class="book-cover"></div>
@@ -64,38 +28,32 @@
             <ul class="details-list"></ul>
           </details>
 
-          <form class="mark-as-read">
-            <input type="checkbox" name="read" id="mark-as-read" value="true" />
-            <label for="mark-as-read">Mark as read</label>
+          <form
+            class="mark-as-read"
+            data-justify-items="center"
+            data-align-items="center"
+            data-grid
+          >
+            <button
+              type="button"
+              name="read"
+              id="mark-as-read"
+              value="true"
+              title="mark as read"
+            ></button>
+          </form>
+          <form class="delete-book">
+            <button class="delete-button" type="button">
+              delete this book
+            </button>
           </form>
         </div>
       </template>
     </div>
     <form class="add-book" id="add-book" data-relative>
-      <div class="close-form" data-absolute>
-        <svg
-          viewBox="0 0 1024 1024"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="#000000"
-        >
-          <a href="#!" title="close">
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-            <g
-              id="SVGRepo_tracerCarrier"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            ></g>
-            <g id="SVGRepo_iconCarrier">
-              <path
-                fill="#000000"
-                d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z"
-              ></path>
-            </g>
-          </a>
-        </svg>
-      </div>
-      <fieldset class="book-essence" data-grid>
-        <legend>required information:</legend>
+      <fieldset class="book-essence" data-grid data-relative>
+        <legend data-absolute>required information:</legend>
+        <a class="close-form" href="#!" title="close" data-absolute></a>
         <label for="title"
           ><span class="description">title:</span>
           <input
@@ -104,6 +62,7 @@
             name="title"
             id="title"
             autocomplete="title"
+            title="please specify title"
           />
         </label>
         <label for="author"
@@ -115,6 +74,7 @@
             id="author"
             autocomplete="author"
             autocapitalize
+            title="please provide author"
           />
         </label>
         <label for="genres"
@@ -125,13 +85,14 @@
             name="genres"
             id="genres"
             autocomplete="genres"
+            title="please type genres"
           />
         </label>
       </fieldset>
       <details>
         <summary>Add more information</summary>
-        <fieldset data-grid>
-          <legend>additionals:</legend>
+        <fieldset data-grid data-relative>
+          <legend data-absolute>additionals:</legend>
           <label for="cycle">
             <span class="description">cycle</span>
             <input type="text" name="cycle" id="cycle" autocomplete="cycle" />
@@ -171,15 +132,23 @@
           </label>
           <div class="wrapper" id="read" data-grid data-even-columns>
             <input type="radio" name="read" value="true" data-relative="" />
-            <input type="radio" name="read" value="false" data-relative="" />
+            <input
+              type="radio"
+              checked
+              name="read"
+              value="false"
+              data-relative=""
+            />
           </div>
         </fieldset>
       </details>
       <button type="submit">Submit book</button>
     </form>
     <div class="book-summary" data-grid>
-      <span class="book-count">you have 0 books in your library</span>
-      <div class="user-actions" data-grid data-even-columns>
+      <span class="book-count"
+        >You have <span class="indicator"></span> book/s in your library</span
+      >
+      <div class="user-actions" data-grid data-relative>
         <a href="#add-book">Add book</a>
         <a href="#library">browse library</a>
       </div>
