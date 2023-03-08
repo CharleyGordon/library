@@ -21,7 +21,7 @@
 }
 
 [data-justify-items="center"] {
-  justify-content: center;
+  justify-items: center;
 }
 
 [data-align-content="center"] {
@@ -55,353 +55,89 @@ body {
   min-height: 100vh;
   display: grid;
 }
+body > * {
+  grid-row: 1;
+  grid-column: 1;
+}
 a {
   text-decoration: underline dashed;
 }
-button,
-.user-actions a:hover,
-.close-form {
-  background-color: black;
+/* the book template */
+.book .cover {
+  aspect-ratio: 1 / 1.3;
+  box-shadow: 1px 0 1px black, -1px -0 10px black;
 }
-button,
-.user-actions a:hover,
-.book {
-  color: white;
+.cover-title {
+  font-size: 3vmax;
 }
-button,
-.close-form {
-  cursor: pointer;
-}
-buttn,
-fieldset {
-  border: none;
-}
-ul {
-  list-style: none;
-}
-.book-summary,
-form.add-book,
-input {
+.book .title {
+  font-size: 3vmax;
+  font-family: "OuroborosRegular";
   text-align: center;
 }
-.book-summary,
-form.add-book {
-  position: fixed;
-  place-self: center;
+.book .details .detail-wrapper {
+  gap: 1rem;
+  height: max-content;
 }
-.book-summary,
-form.add-book,
-.user-actions a,
-details :not(summary),
-#library,
-#library:target ~ *,
-.book,
-.mark-as-read,
-.mark-as-read button {
-  transition: 0.5s;
-}
-.book-summary,
-form.add-book {
-  --translate-book: 100vh;
-  --translate-summary: calc(var(--translate-book) * -1);
-}
-/* book indicator */
-.book-count {
-  margin-block-end: max(2rem, 1vmax);
-}
-.indicator::after {
-  content: counter(books);
-}
-/* user-actions*/
-.user-actions {
-  gap: 2vmax;
-}
-.user-actions a {
-  text-align: center;
-  padding: 0.5em 1em;
-  border-radius: 0.5vmax;
-  outline: 0.5px solid black;
-}
-.user-actions::after {
-  content: "OR";
-  position: absolute;
-  place-self: center;
-}
-legend,
-.close-form {
-  top: 0;
-}
-legend {
-  left: 2ch;
-  font-size: 0.9rem;
-  text-transform: capitalize;
-  letter-spacing: 0.25ch;
-  margin-inline-end: auto;
-}
-fieldset {
-  padding: 1vw;
-  padding-block-start: 2rem;
-  box-shadow: 1px 1px 10px black;
-}
-#library a[href="#!"],
-.close-form {
-  right: 0;
-}
-#library a[href="#!"] {
-  position: fixed;
-  top: 1rem;
-  justify-self: center;
-  padding: 0 2vmax;
-}
-/* details transition */
-summary {
-  margin-block-end: 1rem;
-  text-align: start;
-}
-summary::marker {
-  content: "+ ";
-}
-details:not([open]) :not(summary) {
-  translate: 0 -100%;
-  opacity: 0;
-}
-/* actual styling */
-form.add-book,
-.genres {
+.book .description {
+  max-width: 60%;
   overflow: auto;
+  font-family: "IntervalBoldSlanted";
+  font-weight: normal;
+  font-style: normal;
+  word-break: break-word;
 }
-form.add-book {
-  height: fit-content;
-  margin: auto;
-  padding: min(2rem, 2vmax);
-}
-form.add-book:not(:target) {
-  translate: 0 var(--translate-book);
-}
-form.add-book:not(:target),
-form.add-book:target ~ .book-summary {
-  opacity: 0;
-}
-form.add-book:target ~ .book-summary {
-  translate: 0 var(--translate-summary);
-}
-.close-form,
-.book-cover {
+a:is([href="#edit"], [href="#cancel"]) {
+  width: min(30px, 4vw);
   aspect-ratio: 1;
+  background-size: 100%;
 }
-.close-form {
-  width: min(20px, 5vw);
-  clip-path: polygon(
-    20% 0%,
-    0% 20%,
-    30% 50%,
-    0% 80%,
-    20% 100%,
-    50% 70%,
-    80% 100%,
-    100% 80%,
-    70% 50%,
-    100% 20%,
-    80% 0%,
-    50% 30%
-  );
-  translate: 50% -50%;
-  scale: 0.9;
+a[href="#edit"] {
+  background-image: url("/img/checkmark.svg");
 }
-.book-details,
-.mark-as-read,
-form.add-book button {
-  align-self: end;
+a[href="#cancel"] {
+  background-image: url("img/cancel.svg");
 }
-.book-cover,
-.mark-as-read {
-  align-self: stretch;
+.book .to-edit:not(.editing) ~ a[href="#edit"] {
+  background-image: url("/img/pencil.svg");
 }
-form.add-book button {
-  /* padding: 10px; */
-  width: 100%;
-  margin-block-start: 2vmax;
-  padding: min(3vmax, 15px);
+.book .to-edit:not(.editing) ~ a[href="#cancel"] {
+  display: none;
 }
-:where(form.add-book label) {
-  display: contents;
-}
-label[for="read"] {
-  grid-auto-flow: column;
-  width: fit-content;
-  gap: 0.5em;
-}
-form.add-book fieldset {
-  gap: min(14px, 1vh);
-}
-form.add-book .description::first-letter,
-.title {
-  font-family: "DancingScriptBold";
-  text-shadow: 0 0 1px currentColor;
-}
-form.add-book .description::first-letter {
-  font-size: 1.3rem;
-  text-transform: uppercase;
-  /* color: red; */
-}
-form.add-book fieldset input {
-  padding: min(10px, 1vh);
-}
-/* radios */
-input[type="radio"] {
-  appearance: none;
-  place-self: center;
-  outline: 1px solid;
-}
-input[type="radio"]:is(:hover, :focus) {
-  outline: 3px solid currentColor;
-}
-input[type="radio"]:is(:checked) {
-  outline: 5px solid currentColor;
-  outline-offset: -10px;
-}
-input[type="radio"]:is(:checked)::after {
-  position: absolute;
-  left: -2ch;
-  content: "\27A5";
-}
-input[type="radio"][value="false"] {
-  color: red;
-}
-input[type="radio"][value="true"] {
-  color: green;
-  /* border-radius: 50%; */
-}
-input[type="radio"]::before {
-  content: attr(value);
-}
-#library {
-  position: fixed;
-  width: 100%;
-  grid-row: 1 / -1;
-  --width: 100%;
+.book .genres {
   flex-wrap: wrap;
-  padding: 1rem 0.5rem;
-  gap: 2vh;
-}
-#library:not(:target) {
-  translate: -100%;
-}
-#library:target ~ *,
-form.add-book:not(:target) {
-  pointer-events: none;
-}
-#library:target ~ * {
-  opacity: 0;
-}
-.book,
-.genres {
-  gap: 0.5rem;
-}
-.book {
-  counter-increment: books;
-  --auto-rows-count: 5;
-  --min-width: min(100vw, 300px);
-  min-width: var(--min-width);
-  overflow: hidden;
-  align-self: start;
-  grid-template-columns: 1fr 1fr;
-
-  grid-template-areas:
-    "cover title"
-    "cover author"
-    "cover genres"
-    "cover details"
-    "cover mark"
-    "cover delete";
-  grid-template-rows: repeat(var(--auto-rows-count), auto) 1fr;
-  align-items: start;
-  padding: 1rem;
-
-  background-color: #cfc5c5;
-  border: 1px solid black;
-  text-align: center;
-}
-.book.read {
-  --auto-rows-count: 4;
-  grid-template-areas:
-    "cover title"
-    "cover author"
-    "cover genres"
-    "cover details"
-    "cover delete";
-  background-color: #444;
-}
-.book-cover {
-  grid-area: cover;
-  box-shadow: 1px 1px 10px 2px black;
-}
-.title {
-  grid-area: title;
-
-  font-size: 1.3rem;
-}
-.title::before {
-  content: open-quote;
-}
-.title::after {
-  content: close-quote;
-}
-.author {
-  grid-area: author;
-}
-.author::before {
-  content: "By ";
-}
-.genres {
-  margin: 0 auto;
-  max-height: 5ch;
-  grid-template-columns: repeat(auto-fit, minmax(7ch, 1fr));
-  grid-area: genres;
-  justify-self: end;
-  width: 85%;
 }
 .genre {
-  border: 1px solid black;
-  background: #444;
+  flex: 1 1 100px;
 }
-
-.book-details {
-  grid-area: details;
+/* book form*/
+#book-form {
+  align-self: center;
+  gap: 0.7rem;
 }
-ul.details-list {
+#book-form fieldset {
+  max-width: 70vw;
+  gap: inherit;
+  padding: 1rem;
+}
+#book-form label {
+  display: contents;
   text-align: center;
 }
-.mark-as-read {
-  grid-area: mark;
-}
-.mark-as-read button {
-  --dimentions: 30px;
-  align-self: center;
-  width: var(--dimentions);
-  height: var(--dimentions);
-  background-color: #888;
-  clip-path: polygon(0 20%, 20% 0, 70% 70%, 100% 50%, 70% 100%, 20% 40%);
-}
-.mark-as-read:focus-within {
-  scale: 0;
-}
-.mark-as-read:focus-within button {
-  clip-path: circle(50% at 50% 50%);
-}
-.delete-book {
-  grid-area: delete;
-}
-.delete-button {
-  background-color: red;
-  padding: 0.5rem;
-}
-@media (min-width: 400px) {
-  #library {
-    --width: 400px;
+@media (max-width: 600px) {
+  .book .details {
+    justify-content: center;
+    text-align: center;
   }
+  .book .cover {
+    width: 50%;
+    place-self: center;
+  }
+}
+@media screen and (min-width: 600px) {
   .book {
-    --min-width: 400px;
-    max-width: var(--width);
+    grid-template-columns: 0.4fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
   }
 }

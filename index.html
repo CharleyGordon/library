@@ -8,150 +8,115 @@
     <link
       rel="stylesheet"
       media="screen"
-      href="https://fontlibrary.org//face/dancing"
+      href="https://fontlibrary.org//face/interval"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      media="screen"
+      href="https://fontlibrary.org//face/ouroboros"
       type="text/css"
     />
     <script src="script.js" defer></script>
     <title>Library</title>
   </head>
-  <body>
-    <div id="library" data-flex data-justify-content="center">
-      <a href="#!">close</a>
-      <template class="book-template">
-        <div class="book" data-grid>
-          <div class="book-cover"></div>
-          <span class="title"> </span>
-          <span class="author"> </span>
-          <ul class="genres" data-grid></ul>
-          <details class="book-details">
-            <summary>view details</summary>
-            <ul class="details-list"></ul>
-          </details>
-
-          <form
-            class="mark-as-read"
-            data-justify-items="center"
-            data-align-items="center"
-            data-grid
-          >
-            <button
-              type="button"
-              name="read"
-              id="mark-as-read"
-              value="true"
-              title="mark as read"
-            ></button>
-          </form>
-          <form class="delete-book">
-            <button class="delete-button" type="button">
-              delete this book
-            </button>
-          </form>
+  <body data-grid>
+    <template id="book">
+      <div class="book" data-grid>
+        <div
+          class="cover"
+          data-grid
+          data-justify-content="center"
+          data-align-content="center"
+        >
+          <span class="cover-title"> Cover title </span>
+          <span class="rate">rate</span>
         </div>
-      </template>
-    </div>
-    <form class="add-book" id="add-book" data-relative>
-      <fieldset class="book-essence" data-grid data-relative>
-        <legend data-absolute>required information:</legend>
-        <a class="close-form" href="#!" title="close" data-absolute></a>
+        <div class="details" data-grid>
+          <span class="title"> Generic title </span>
+          <div class="detail-wrapper" data-flex>
+            <span>Author: </span> <span class="author"> Author </span>
+          </div>
+            
+            <div class="detail-wrapper" data-flex="">
+              <span class="read-status">Status: </span>
+              <span class="read">You Haven't read this book</span>
+              <a href="" title="mark as read">mark as read</a>
+            </div>
+            <div class="detail-wrapper descriptions" data-flex><span>Description: </span> <span class="description to-edit"> Description </span> <a href="#edit" title="Edit description"></a>  <a href="#cancel" title="Cancel changes"></a> </div>
+            <div class="genres" data-flex="">
+             
+            </div>
+            <span class="pages">300 pages</span>
+            <div class="detail-wrapper" data-flex>
+              <span>Publish date: </span>
+              <span class="published">publish date</span>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </template>
+    <form id="book-form" data-grid data-justify-content="center">
+      <fieldset
+        id="required-information"
+        data-grid
+        data-justify-content="center"
+        data-align-items="start"
+        data-justify-items="center"
+      >
+        <legend>required info</legend>
         <label for="title"
-          ><span class="description">title:</span>
-          <input
-            type="text"
-            required="required"
-            name="title"
-            id="title"
-            autocomplete="title"
-            title="please specify title"
-          />
+          >Title
+          <input type="text" name="title" id="title" required />
         </label>
         <label for="author"
-          ><span class="description">author:</span>
-          <input
-            type="text"
-            required="required"
-            name="author"
-            id="author"
-            autocomplete="author"
-            autocapitalize
-            title="please provide author"
-          />
+          >Author
+          <input type="text" name="author" id="author" required />
         </label>
-        <label for="genres"
-          ><span class="description">genres:</span>
-          <input
-            type="text"
-            required="required"
-            name="genres"
-            id="genres"
-            autocomplete="genres"
-            title="please type genres"
-          />
+
+        <label for="pages"
+          >Pages
+          <input type="text" name="pages" id="pages" required />
+        </label>
+        <label for="published"
+          >Publish date
+          <input type="date" name="published" id="published" required />
+        </label>
+        <label for="read">
+          <span
+            >have you read it? <input type="checkbox" name="read" id="read" value="book read"
+          /></span>
         </label>
       </fieldset>
-      <details>
-        <summary>Add more information</summary>
-        <fieldset data-grid data-relative>
-          <legend data-absolute>additionals:</legend>
-          <label for="cycle">
-            <span class="description">cycle</span>
-            <input type="text" name="cycle" id="cycle" autocomplete="cycle" />
-          </label>
-          <label for="publisher">
-            <span class="description">publisher</span>
-            <input
-              type="text"
-              name="publisher"
-              id="publisher"
-              autocomplete="publisher"
-            />
-          </label>
-          <label for="pages">
-            <span class="description">pages</span>
-            <input
-              type="number"
-              name="pages"
-              id="pages"
-              autocomplete="pages"
-              min="1"
-              step="1"
-            />
-          </label>
-          <label for="published">
-            <span class="description">published</span>
-            <input
-              type="date"
-              name="published"
-              id="published"
-              autocomplete="published"
-            />
-          </label>
-
-          <label for="read">
-            <span class="description">read</span>
-          </label>
-          <div class="wrapper" id="read" data-grid data-even-columns>
-            <input type="radio" name="read" value="true" data-relative="" />
-            <input
-              type="radio"
-              checked
-              name="read"
-              value="false"
-              data-relative=""
-            />
-          </div>
-        </fieldset>
-      </details>
-      <button type="submit">Submit book</button>
-    </form>
-    <div class="book-summary" data-grid>
-      <span class="book-count"
-        >You have <span class="indicator"></span> book/s in your library</span
+      <fieldset
+        id="optionals"
+        data-grid
+        data-justify-content="center"
+        data-align-items="start"
+        data-justify-items="center"
       >
-      <div class="user-actions" data-grid data-relative>
-        <a href="#add-book">Add book</a>
-        <a href="#library">browse library</a>
-      </div>
-    </div>
+        <legend>Additionals</legend>
+        <label for="description">
+          Add description
+          <textarea name="description" id="description">
+Provide description...</textarea
+          >
+        </label>
+        <label for="genres"
+          >Genres
+          <input type="text" name="genres" id="genres" list="genres"/>
+
+          <datalist id="genres"> 
+            <option value="Fantasy">Fantasy</option>
+            <option value="Fantasy">Sci-fi</option>
+            <option value="Horror">Horror</option>
+          </datalist>
+            
+         
+        </label>
+      </fieldset>
+      <button type="submit">Add Book</button>
+    </form>
   </body>
 </html>
