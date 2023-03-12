@@ -17,55 +17,64 @@
       href="https://fontlibrary.org//face/ouroboros"
       type="text/css"
     />
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/averia-serif" type="text/css"/> 
     <script src="script.js" defer></script>
     <title>Library</title>
   </head>
-  <body data-grid>
-    <template id="book">
-      <div class="book" data-grid>
-        <div
-          class="cover"
-          data-grid
-          data-justify-content="center"
-          data-align-content="center"
-        >
-          <span class="cover-title"> Cover title </span>
-          <span class="rate">rate</span>
-        </div>
-        <div class="details" data-grid>
-          <span class="title"> Generic title </span>
-          <div class="detail-wrapper" data-flex>
-            <span>Author: </span> <span class="author"> Author </span>
-          </div>
-            
-            <div class="detail-wrapper" data-flex="">
-              <span class="read-status">Status: </span>
-              <span class="read">You Haven't read this book</span>
-              <a href="" title="mark as read">mark as read</a>
-            </div>
-            <div class="detail-wrapper descriptions" data-flex><span>Description: </span> <span class="description to-edit"> Description </span> <a href="#edit" title="Edit description"></a>  <a href="#cancel" title="Cancel changes"></a> </div>
-            <div class="genres" data-flex="">
-             
-            </div>
-            <span class="pages">300 pages</span>
-            <div class="detail-wrapper" data-flex>
-              <span>Publish date: </span>
-              <span class="published">publish date</span>
-            </div>
-          </div>
-          
-        </div>
+  <body data-grid data-relative>
+    <div class="library" id="library" data-grid>
+      <h1>your library</h1>
+      <a href="#book-form" title="add book" data-absolute></a>
+    </div>
+    <div class="book" data-grid>
+      <div
+        class="cover"
+        data-grid
+        data-justify-content="center"
+        data-align-content="center"
+        data-relative
+      >
+        <img src="" class="cover-image" data-absolute>
+        <span class="cover-title"> Cover title </span>
       </div>
-    </template>
-    <form id="book-form" data-grid data-justify-content="center">
+      <div class="details" data-grid>
+        <div class="detail-wrapper" data-flex>
+          <span class="title"> Generic title </span>  <a class="mark" title="mark as read"></a> <a class="delete" title="delete"></a>
+        </div>
+          
+        <div class="detail-wrapper editable" data-flex>
+          <span>Author: </span> <span class="author to-edit"> Author </span> <a class="edit" title="Edit author"></a>  <a class="cancel" title="Cancel changes"></a>
+        </div>
+            
+          <div class="detail-wrapper" data-flex="">
+            <span class="read-status">Status: </span>
+            <span class="read to-edit">You Haven't read this book</span>
+          </div>
+          <div class="detail-wrapper descriptions editable" data-flex><span>Description: </span> <span class="description to-edit"> Description </span> <a class="edit" title="Edit description"></a>  <a class="cancel" title="Cancel changes"></a> </div>
+          <div class="genres" data-flex="">
+             <span class="no-genre">No genres provided</span>
+          </div>
+          <div class="detail-wrapper" data-flex><span>Pages: </span><span class="pages">300 pages</span></div>
+            
+          <div class="detail-wrapper" data-flex>
+            <span>Publish date: </span>
+            <span class="published">publish date</span>
+          </div>
+        </div>
+          
+      </div>
+    </div>
+    <form id="book-form" data-grid data-justify-content="center" data-relative>
+      <a href="#actions" data-absolute></a>
       <fieldset
         id="required-information"
         data-grid
+        data-relative
         data-justify-content="center"
         data-align-items="start"
         data-justify-items="center"
       >
-        <legend>required info</legend>
+        <legend data-absolute>required info</legend>
         <label for="title"
           >Title
           <input type="text" name="title" id="title" required />
@@ -77,26 +86,26 @@
 
         <label for="pages"
           >Pages
-          <input type="text" name="pages" id="pages" required />
+          <input type="number" name="pages" id="pages" required />
         </label>
         <label for="published"
           >Publish date
           <input type="date" name="published" id="published" required />
         </label>
-        <label for="read">
-          <span
-            >have you read it? <input type="checkbox" name="read" id="read" value="book read"
-          /></span>
+        <label for="read" data-flex>
+          have you read it? <input type="checkbox" name="read" id="read" value="You've read this book"
+          />
         </label>
       </fieldset>
-      <fieldset
+      <fieldset 
         id="optionals"
         data-grid
+        data-relative
         data-justify-content="center"
         data-align-items="start"
         data-justify-items="center"
       >
-        <legend>Additionals</legend>
+        <legend data-absolute>Additionals</legend>
         <label for="description">
           Add description
           <textarea name="description" id="description">
@@ -115,8 +124,15 @@ Provide description...</textarea
             
          
         </label>
+        <label for="cover-image" data-flex data-relative>add book cover<input type="file" name="cover-image" id="cover-image" data-absolute></label>
       </fieldset>
       <button type="submit">Add Book</button>
     </form>
+    <nav>
+      <ul id="actions" data-flex>
+        <li data-grid=""><a href="#book-form" title="add book"></a></li>
+        <li data-grid=""><a href="#library"></a></li>
+      </ul>
+    </nav>
   </body>
 </html>
