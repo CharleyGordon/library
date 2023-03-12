@@ -2,6 +2,6 @@
 
 Small library built using javaScript classes
 
-##Features
+## Features
 
--Set authors and descriptions
+- Set authors and descriptions
