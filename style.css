@@ -1,6 +1,7 @@
 :root {
   font-family: "AveriaSerifRegular";
   font-weight: 700;
+  font-size: 16px;
   counter-reset: books;
 }
 [data-grid] {

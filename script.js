@@ -43,7 +43,7 @@
               author: "Daniel Keyes",
               pages: "311",
               published: "4/1/1959",
-              read: "true",
+              read: "book read",
               description:
                 "Flowers for Algernon, by Daniel Keyes, tells the story of Charlie Gordon, a mentally disabled, middle-aged man who takes part in an experimental procedure aimed at increasing intelligence.",
               genres: ["Sci-fi"],
