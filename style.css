@@ -213,37 +213,37 @@ a:is([href="#book-form"], [href="#library"]) {
   --size-2: 80px;
 }
 a[href="#book-form"] {
-  background-image: url("img/add-book.svg");
+  background-image: url("./img/add-book.svg");
 }
 a[href="#library"] {
-  background-image: url("img/library.svg");
+  background-image: url("./img/library.svg");
 }
 a[href="#actions"] {
-  background-image: url("img/back.svg");
+  background-image: url("./img/back.svg");
   right: 1vmin;
   top: 2vmin;
 }
 .book a.edit {
-  background-image: url("/img/checkmark.svg");
+  background-image: url("./img/checkmark.svg");
 }
 a.cancel {
-  background-image: url("img/cancel.svg");
+  background-image: url("./img/cancel.svg");
 }
 a.delete {
-  background-image: url("img/delete.svg");
+  background-image: url("./img/delete.svg");
 }
 :not([data-finished]) a.mark {
-  background-image: url("/img/finished.svg");
+  background-image: url("./img/finished.svg");
 }
 .book:is([data-read]) a.mark {
-  background-image: url("/img/undo.svg");
+  background-image: url("./img/undo.svg");
 }
 .book .to-edit:is(.editing) {
   filter: opacity(70%);
   color: #555;
 }
 .book .to-edit:not(.editing) ~ a.edit {
-  background-image: url("/img/pencil.svg");
+  background-image: url("./img/pencil.svg");
 }
 .book .to-edit:not(.editing) ~ a.cancel,
 [data-finished] [title="mark as read"] {
@@ -252,7 +252,7 @@ a.delete {
 .cover-image[src=""],
 .cover-image:is([src="data:application/octet-stream;base64,"]) {
   display: grid;
-  background-image: url("img/unknown.svg");
+  background-image: url("./img/unknown.svg");
   background-size: cover;
   background-position: center;
 
