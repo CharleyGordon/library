@@ -346,6 +346,13 @@ a.delete {
 label[data-flex] input {
   margin-inline-start: 1rem;
 }
+input.invalid {
+  outline: 2px solid red;
+}
+.error {
+  color: red;
+  margin-block: 0.5rem;
+}
 @media (max-width: 600px) {
   .library {
     inset: 0;

@@ -296,3 +296,74 @@
   };
   queries.init();
 })();
+
+const patterns = {
+  title: "^[A-Z0-9][0-9A-Za-z ,.+-]{1,}$",
+  author: "^[A-Z][a-z]+[ ][A-Z][a-z. ]{2,}$",
+  pages: "^d{1,}$",
+  published: "d{4}-d{2}-d{2}",
+  genres: "[A-Z][A-Za-z0-9 .,-]{1,}",
+};
+
+const errors = {
+  valueMissing: "No value",
+  typeMismatch: "Invalid type",
+  patternMismatch: "Invalid pattern",
+  tooLong: "Value provided is too long",
+  tooShort: "Value provided is too short",
+  rangeUnderflow: "Too litte value",
+  rangeOverflow: "Too hight value",
+  stepMismatch: "Invalid step",
+  badInput: "Invalid input",
+  customError: "Something else",
+};
+
+const errorKeys = Object.keys(errors);
+
+function createErrorSpan(elementBefore) {
+  const errorSpan = document.createElement("span");
+  errorSpan.classList.add("error");
+  elementBefore.after(errorSpan);
+  return errorSpan;
+}
+
+function handleValidity(event) {
+  const { target } = event;
+  if (!target.matches("input")) return;
+  validatePattern(target);
+  toggleInvalidClass(target);
+}
+
+function displayInvalid(inputElement) {
+  const { validity } = inputElement;
+  if (!validity) return;
+  const invalidValue = errorKeys.filter((errorKey) => validity[errorKey])[0];
+  const validationText = errors[invalidValue];
+  const errorSpan = inputElement?.nextElementSibling;
+  errorSpan.textContent = "";
+  if (!invalidValue) return;
+  errorSpan.textContent = validationText;
+}
+
+function toggleInvalidClass(inputElement) {
+  console.log(inputElement);
+  inputElement.classList.remove("invalid");
+  if (inputElement.checkValidity()) return;
+  inputElement.classList.add("invalid");
+}
+
+function validatePattern(target) {
+  const { id } = target;
+  const pattern = patterns[id];
+  if (pattern) target.setAttribute("pattern", pattern);
+  displayInvalid(target);
+}
+
+const form = document.querySelector("form");
+
+const inputs = Array.from(form.elements).filter((element) =>
+  element.matches("input")
+);
+inputs.forEach(createErrorSpan);
+
+form.addEventListener("input", handleValidity);
